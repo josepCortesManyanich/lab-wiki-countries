@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import CountriesList from "./components/CountriesList";
 import axios from 'axios'
 import CountriesData from './countries.json'
+import CountryDetails from "./components/CountryDetails";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     const data = async () => {
       try{
         const apiData = await axios.get('https://ih-countries-api.herokuapp.com/countries.')
+        console.log(apiData.data)
         setCountries(apiData.data)
       }
       catch(error){
@@ -28,7 +30,7 @@ function App() {
       <div>
       <CountriesList countries={countries} />
       <Routes>
-        <Route path="/:alpha3code"/>
+        <Route path=":id" element={ <CountryDetails/> } />
       </Routes>
       </div>
     </div>
